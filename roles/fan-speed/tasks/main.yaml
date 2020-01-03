@@ -1,0 +1,21 @@
+---
+- name: Install ipmitool
+  dnf:
+    name: ipmitool
+    state: latest
+
+- name: Ensure fan-speed.service
+  copy:
+    src: fan-speed.service
+    dest: /etc/systemd/system/fan-speed.service
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+  - restart fan-speed
+
+- name: Ensure fan-speed.service is enabled
+  systemd:
+    name: fan-speed
+    state: started
+    enabled: yes

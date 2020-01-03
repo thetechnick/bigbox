@@ -1,0 +1,6 @@
+---
+- name: restart fan-speed
+  systemd:
+    name: fan-speed
+    state: restarted
+    daemon_reload: yes

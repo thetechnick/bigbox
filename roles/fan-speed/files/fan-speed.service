@@ -1,0 +1,11 @@
+[Unit]
+Description=Set fan speed to 50% via ipmitool
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/ipmitool raw 0x30 0x70 0x66 0x01 0x00 0x32
+RemainAfterExit=true
+
+[Install]
+WantedBy=multi-user.target

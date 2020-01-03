@@ -1,0 +1,56 @@
+---
+- name: install zsh
+  dnf:
+    name:
+    - zsh
+    - git
+    - vim
+    state: latest
+
+- name: switch to zsh
+  user:
+    name: nschieder
+    shell: /bin/zsh
+
+- name: clone github.com/thetechnick/oh-my-zsh
+  git:
+    repo: https://github.com/thetechnick/oh-my-zsh.git
+    dest: /home/nschieder/.oh-my-zsh
+    force: yes
+
+- name: clone github.com/zsh-users/zsh-autosuggestions
+  git:
+    repo: https://github.com/zsh-users/zsh-autosuggestions
+    dest: /home/nschieder/.oh-my-zsh/plugins/zsh-autosuggestions
+
+- name: clone github.com/zsh-users/zsh-syntax-highlighting
+  git:
+    repo: https://github.com/zsh-users/zsh-syntax-highlighting
+    dest: /home/nschieder/.oh-my-zsh/plugins/zsh-syntax-highlighting
+
+- name: clone github.com/zsh-users/zsh-completions
+  git:
+    repo: https://github.com/zsh-users/zsh-completions
+    dest: /home/nschieder/.oh-my-zsh/plugins/zsh-completions
+
+- name: give permisisons to user
+  file:
+    path: /home/nschieder/.oh-my-zsh
+    state: directory
+    recurse: yes
+    owner: nschieder
+    group: nschieder
+
+- name: Change zsh color to green
+  lineinfile:
+    path: /home/nschieder/.oh-my-zsh/themes/agnoster.zsh-theme
+    regexp: prompt_segment blue black '%1~'
+    line: prompt_segment green black '%1~'
+
+- name: Ensure .zshrc
+  copy:
+    src: .zshrc
+    dest: /home/nschieder/.zshrc
+    owner: nschieder
+    group: nschieder
+    mode: 0644

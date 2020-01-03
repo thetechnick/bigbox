@@ -1,0 +1,7 @@
+---
+- hosts: bigbox
+  roles:
+  - fan-speed
+  - systemd-networkd
+  - zsh
+  - kubernetes
