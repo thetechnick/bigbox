@@ -1,0 +1,36 @@
+---
+- name: Add Kubernetes Repository
+  yum_repository:
+    name: Kubernetes
+    description: Kubernetes Repo
+    baseurl: https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+    gpgcheck: yes
+    repo_gpgcheck: yes
+    gpgkey:
+    - https://packages.cloud.google.com/yum/doc/yum-key.gpg
+    - https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+
+- name: Install Kubeadm, Kubectl, Kubelet
+  dnf:
+    name:
+    - kubeadm
+    - kubelet
+    - kubectl
+    state: latest
+    disable_excludes: kubernetes
+
+- name: Put SELinux in permissive mode, logging actions that would be blocked.
+  selinux:
+    policy: targeted
+    state: permissive
+
+- name: Enable Kubelet
+  systemd:
+    name: kubelet
+    enabled: yes
+
+- name: Enable RP Filter
+  sysctl:
+    name: net.ipv4.conf.all.rp_filter
+    value: '1'
+    state: present

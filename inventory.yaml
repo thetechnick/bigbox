@@ -1,0 +1,4 @@
+all: # keys must be unique, i.e. only one 'hosts' per group
+  hosts:
+    78.46.201.119:
+      ansible_user: root

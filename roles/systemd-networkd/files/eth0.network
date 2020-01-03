@@ -1,0 +1,7 @@
+[Match]
+Name=eth0
+
+[Network]
+DHCP=ipv4
+Address=2a01:4f8:c2c:7235::1/64
+Gateway=fe80::1

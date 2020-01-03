@@ -1,0 +1,22 @@
+---
+- name: Update System
+  dnf:
+    name: "*"
+    state: latest
+
+- name: "Check if wireguard is installed"
+  package_facts:
+    manager: "auto"
+
+# hard reboot to make sure that the wireguard kernel module is build with the latest kernel headers
+- name: Reboot
+  reboot:
+  when: "'wireguard-dkms' not in ansible_facts.packages"
+
+- name: Enable wireguard copr
+  command: dnf copr enable jdoss/wireguard -y
+
+- name: install wireguard
+  dnf: 
+    name: wireguard-dkms
+    state: latest

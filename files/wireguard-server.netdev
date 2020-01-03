@@ -1,0 +1,12 @@
+[NetDev]
+Name = wg0
+Kind = wireguard
+Description = Wireguard
+
+[WireGuard]
+ListenPort = 51820
+PrivateKey = qARt8yEn5pTjxLBCF+MwMYDP6G517ZQ2faqP6sjg+lM=
+
+[WireGuardPeer]
+PublicKey = Za+/CcuSZO2Jp4JY5QZV/D5ADOOHXoZdCW714eZ/RVc=
+AllowedIPs = 0.0.0.0/0

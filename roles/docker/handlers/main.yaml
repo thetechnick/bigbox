@@ -1,0 +1,8 @@
+---
+- name: Reboot
+  reboot:
+
+- name: Enforce V1 Cgroups
+  shell: grubby --update-kernel=ALL --args="systemd.unified_cgroup_hierarchy=0"
+  notify:
+  - Reboot

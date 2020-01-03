@@ -1,0 +1,28 @@
+---
+
+- name: disable default network manager
+  systemd:
+    enabled: no
+    masked: yes
+    name: '{{item}}'
+  with_items:
+  - network
+
+- name: ensure eth0.network
+  copy:
+    src: eth0.network
+    dest: /etc/systemd/network/eth0.network
+    owner: root
+    group: root
+    mode: 0644
+
+- name: start systemd-networkd
+  systemd:
+    enabled: yes
+    state: started
+    name: '{{item}}'
+  with_items:
+  - systemd-networkd
+  - systemd-resolved
+  notify:
+  - Reboot
