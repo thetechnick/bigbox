@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: harbor
+  namespace: harbor
+spec:
+  secretName: harbor-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  dnsNames:
+  - harbor.home.nico-schieder.de
+  - notary.home.nico-schieder.de

@@ -1,0 +1,21 @@
+artifactory:
+  artifactory:
+    persistence:
+      storageClass: fast-disks
+  postgresql:
+    persistence:
+      size: 5000Mi
+      storageClass: fast-disks
+
+  nginx:
+    enabled: false
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/tls-acme: "true"
+    hosts:
+    - artifactory.home.nico-schieder.de
+    tls:
+    - hosts:
+      - artifactory.home.nico-schieder.de
+      secretName: artifactory-tls

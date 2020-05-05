@@ -1,0 +1,34 @@
+expose:
+  type: ingress
+  tls:
+    enabled: true
+    secretName: harbor-tls
+  ingress:
+    hosts:
+      core: harbor.home.nico-schieder.de
+      notary: notary.home.nico-schieder.de
+    annotations:
+      ingress.kubernetes.io/ssl-redirect: "true"
+      ingress.kubernetes.io/proxy-body-size: "0"
+      nginx.ingress.kubernetes.io/ssl-redirect: "true"
+      nginx.ingress.kubernetes.io/proxy-body-size: "0"
+
+externalURL: https://harbor.home.nico-schieder.de
+
+persistence:
+  persistentVolumeClaim:
+    registry:
+      storageClass: fast-disks
+      size: 10000Mi
+    jobservice:
+      storageClass: fast-disks
+      size: 1Gi
+    chartmuseum:
+      storageClass: fast-disks
+      size: 5000Mi
+    database:
+      storageClass: fast-disks
+      size: 1000Mi
+    redis:
+      storageClass: fast-disks
+      size: 1000Mi

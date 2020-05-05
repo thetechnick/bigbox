@@ -97,7 +97,7 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
       - name: gitea
-        image: gitea/gitea:1.10.2
+        image: gitea/gitea:1.11.3
         env:
         - name: RUN_MODE
           value: prod

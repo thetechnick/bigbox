@@ -84,6 +84,12 @@ config:
     redirectURIs:
     - 'https://ci.home.nico-schieder.de/sky/issuer/callback'
 
+  - id: harbor
+    name: Harbor
+    secret: tJeJkxKcwnCWiCmsS95Q
+    redirectURIs:
+    - 'https://ci.home.nico-schieder.de/sky/issuer/callback'
+
   # - id: bigbox-k8s
   #   name: 'Bigbox Kubernetes'
   #   secret: vPE3SCAlHnvkxftJPCuV
