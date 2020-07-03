@@ -32,3 +32,6 @@ persistence:
     redis:
       storageClass: fast-disks
       size: 1000Mi
+
+trivy:
+  enabled: false
